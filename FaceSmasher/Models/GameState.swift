@@ -17,9 +17,11 @@ class GameState: ObservableObject {
 
     private let smashFeedback = UIImpactFeedbackGenerator(style: .heavy)
     private let gameOverFeedback = UINotificationFeedbackGenerator()
+    private let cloudStore = NSUbiquitousKeyValueStore.default
 
     init() {
         loadFaceImage()
+        observeCloudChanges()
         smashFeedback.prepare()
         gameOverFeedback.prepare()
     }
@@ -126,14 +128,29 @@ class GameState: ObservableObject {
     func saveFaceImage(_ image: UIImage) {
         faceImage = image
         if let data = image.jpegData(compressionQuality: 0.8) {
-            UserDefaults.standard.set(data, forKey: "faceImage")
+            cloudStore.set(data, forKey: "faceImage")
+            cloudStore.synchronize()
         }
     }
 
     private func loadFaceImage() {
-        if let data = UserDefaults.standard.data(forKey: "faceImage"),
+        if let data = cloudStore.data(forKey: "faceImage"),
            let image = UIImage(data: data) {
             faceImage = image
+        }
+    }
+
+    private func observeCloudChanges() {
+        NotificationCenter.default.addObserver(
+            forName: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+            object: cloudStore,
+            queue: .main
+        ) { [weak self] notification in
+            guard let self = self,
+                  let changedKeys = notification.userInfo?[NSUbiquitousKeyValueStoreChangedKeysKey] as? [String] else { return }
+            if changedKeys.contains("faceImage") {
+                self.loadFaceImage()
+            }
         }
     }
 }

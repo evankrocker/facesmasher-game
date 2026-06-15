@@ -11,8 +11,11 @@ struct HighScore: Identifiable, Codable {
 class HighScoreStore: ObservableObject {
     @Published var scores: [HighScore] = []
 
+    private let cloudStore = NSUbiquitousKeyValueStore.default
+
     init() {
         load()
+        observeCloudChanges()
     }
 
     func add(name: String, score: Int, difficulty: Difficulty) {
@@ -36,14 +39,29 @@ class HighScoreStore: ObservableObject {
 
     private func save() {
         if let data = try? JSONEncoder().encode(scores) {
-            UserDefaults.standard.set(data, forKey: "highScores")
+            cloudStore.set(data, forKey: "highScores")
+            cloudStore.synchronize()
         }
     }
 
     private func load() {
-        if let data = UserDefaults.standard.data(forKey: "highScores"),
+        if let data = cloudStore.data(forKey: "highScores"),
            let decoded = try? JSONDecoder().decode([HighScore].self, from: data) {
             scores = decoded
+        }
+    }
+
+    private func observeCloudChanges() {
+        NotificationCenter.default.addObserver(
+            forName: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+            object: cloudStore,
+            queue: .main
+        ) { [weak self] notification in
+            guard let self = self,
+                  let changedKeys = notification.userInfo?[NSUbiquitousKeyValueStoreChangedKeysKey] as? [String] else { return }
+            if changedKeys.contains("highScores") {
+                self.load()
+            }
         }
     }
 }
