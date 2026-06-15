@@ -79,7 +79,7 @@ struct GameView: View {
                 gameOverOverlay
             }
         }
-        .navigationBarHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
         .onAppear {
             gameState.startGame()
         }

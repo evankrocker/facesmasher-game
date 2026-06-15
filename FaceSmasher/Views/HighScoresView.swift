@@ -14,12 +14,11 @@ struct HighScoresView: View {
     }()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color(red: 0.1, green: 0.1, blue: 0.18).ignoresSafeArea()
 
                 VStack(spacing: 0) {
-                    // Difficulty picker
                     Picker("Difficulty", selection: $selectedDifficulty) {
                         ForEach(Difficulty.allCases, id: \.self) { d in
                             Text(d.rawValue).tag(d)
@@ -27,6 +26,7 @@ struct HighScoresView: View {
                     }
                     .pickerStyle(.segmented)
                     .padding()
+                    .accessibilityLabel("Filter scores by difficulty")
 
                     let top = highScoreStore.topScores(for: selectedDifficulty)
 
@@ -36,6 +36,7 @@ struct HighScoresView: View {
                             Image(systemName: "trophy")
                                 .font(.system(size: 50))
                                 .foregroundColor(.yellow.opacity(0.3))
+                                .accessibilityHidden(true)
                             Text("No scores yet!")
                                 .font(.title3)
                                 .foregroundColor(.white.opacity(0.5))
@@ -69,6 +70,8 @@ struct HighScoresView: View {
                                         .foregroundColor(.yellow)
                                 }
                                 .listRowBackground(Color(red: 0.13, green: 0.13, blue: 0.22))
+                                .accessibilityElement(children: .combine)
+                                .accessibilityLabel("Rank \(i + 1), \(entry.playerName), score \(entry.score)")
                             }
                         }
                         .listStyle(.plain)
@@ -87,6 +90,7 @@ struct HighScoresView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Clear") { showClearConfirm = true }
                         .foregroundColor(.red.opacity(0.8))
+                        .accessibilityLabel("Clear \(selectedDifficulty.rawValue) scores")
                 }
             }
             .alert("Clear Scores?", isPresented: $showClearConfirm) {

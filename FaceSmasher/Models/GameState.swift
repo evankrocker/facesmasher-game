@@ -15,8 +15,13 @@ class GameState: ObservableObject {
     private var spawnTimer: AnyCancellable?
     private var moleTimers: [Int: DispatchWorkItem] = [:]
 
+    private let smashFeedback = UIImpactFeedbackGenerator(style: .heavy)
+    private let gameOverFeedback = UINotificationFeedbackGenerator()
+
     init() {
         loadFaceImage()
+        smashFeedback.prepare()
+        gameOverFeedback.prepare()
     }
 
     func startGame() {
@@ -36,6 +41,7 @@ class GameState: ObservableObject {
         moleTimers[index]?.cancel()
         moleTimers[index] = nil
         score += difficulty.pointsPerSmash
+        smashFeedback.impactOccurred()
         withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
             smashedMoles.insert(index)
         }
@@ -55,6 +61,7 @@ class GameState: ObservableObject {
         moleTimers = [:]
         activeMoles = []
         smashedMoles = []
+        gameOverFeedback.notificationOccurred(.warning)
     }
 
     func resetGame() {
@@ -98,8 +105,7 @@ class GameState: ObservableObject {
         guard isPlaying else { return }
         let available = Set(0...8).subtracting(activeMoles).subtracting(smashedMoles)
         guard !available.isEmpty else { return }
-        let currentActive = activeMoles.count
-        guard currentActive < difficulty.maxActiveMoles else { return }
+        guard activeMoles.count < difficulty.maxActiveMoles else { return }
         guard let index = available.randomElement() else { return }
         withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
             activeMoles.insert(index)

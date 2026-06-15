@@ -4,6 +4,8 @@ struct MoleView: View {
     let index: Int
     @EnvironmentObject var gameState: GameState
 
+    @State private var smashRotation: Double = 0
+
     private var isActive: Bool { gameState.activeMoles.contains(index) }
     private var isSmashedState: Bool { gameState.smashedMoles.contains(index) }
 
@@ -27,12 +29,11 @@ struct MoleView: View {
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.yellow, lineWidth: 3))
                         .scaleEffect(isSmashedState ? 1.3 : 1.0)
-                        .rotationEffect(isSmashedState ? .degrees(Double.random(in: -20...20)) : .zero)
+                        .rotationEffect(.degrees(smashRotation))
                         .offset(y: isActive ? size * 0.05 : size * 0.7)
                         .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isActive)
                         .animation(.spring(response: 0.2, dampingFraction: 0.4), value: isSmashedState)
                 } else {
-                    // Placeholder mole
                     Circle()
                         .fill(Color.brown)
                         .frame(width: size * 0.75, height: size * 0.75)
@@ -71,7 +72,18 @@ struct MoleView: View {
                     gameState.smashMole(index: index)
                 }
             }
+            .onChange(of: isSmashedState) { newValue in
+                if newValue {
+                    smashRotation = Double.random(in: -20...20)
+                } else {
+                    smashRotation = 0
+                }
+            }
             .clipped()
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(isActive ? "Face mole" : "Empty hole")
+            .accessibilityHint(isActive ? "Double tap to smash" : "")
+            .accessibilityAddTraits(isActive ? .isButton : [])
         }
         .aspectRatio(1, contentMode: .fit)
     }

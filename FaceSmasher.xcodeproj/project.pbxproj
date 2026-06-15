@@ -17,6 +17,7 @@
 		AA000008000000000000000A /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000008000000000000000B /* HighScore.swift */; };
 		AA000009000000000000000A /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000009000000000000000B /* Difficulty.swift */; };
 		AA00000A000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA00000A000000000000000B /* Assets.xcassets */; };
+		AA00000C000000000000000A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA00000C000000000000000B /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +32,12 @@
 		AA000009000000000000000B /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		AA00000A000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA00000B000000000000000B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA00000C000000000000000B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B1C2D3E4F5A6B7C8D9E0F1A2 /* FaceSmasher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceSmasher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AA00000C00000000000000AA /* Frameworks */ = {
+		AA00000D000000000000000A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,7 +47,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA00000D00000000000000AA /* Products */ = {
+		AA000010000000000000CCCC /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				B1C2D3E4F5A6B7C8D9E0F1A2 /* FaceSmasher.app */,
@@ -53,19 +55,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AA00000E00000000000000AA /* FaceSmasher */ = {
-			isa = PBXGroup;
-			children = (
-				AA000001000000000000000B /* FaceSmasherApp.swift */,
-				AA00000F00000000000000AA /* Views */,
-				AA00001000000000000000AA /* Models */,
-				AA00000A000000000000000B /* Assets.xcassets */,
-				AA00000B000000000000000B /* Info.plist */,
-			);
-			path = FaceSmasher;
-			sourceTree = "<group>";
-		};
-		AA00000F00000000000000AA /* Views */ = {
+		AA000011000000000000CCCC /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				AA000002000000000000000B /* HomeView.swift */,
@@ -77,7 +67,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		AA00001000000000000000AA /* Models */ = {
+		AA000012000000000000CCCC /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				AA000007000000000000000B /* GameState.swift */,
@@ -87,11 +77,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		AA00001100000000000000AA = {
+		AA000013000000000000CCCC /* FaceSmasher */ = {
 			isa = PBXGroup;
 			children = (
-				AA00000E00000000000000AA /* FaceSmasher */,
-				AA00000D00000000000000AA /* Products */,
+				AA000001000000000000000B /* FaceSmasherApp.swift */,
+				AA000011000000000000CCCC /* Views */,
+				AA000012000000000000CCCC /* Models */,
+				AA00000A000000000000000B /* Assets.xcassets */,
+				AA00000B000000000000000B /* Info.plist */,
+				AA00000C000000000000000B /* PrivacyInfo.xcprivacy */,
+			);
+			path = FaceSmasher;
+			sourceTree = "<group>";
+		};
+		AA000014000000000000CCCC = {
+			isa = PBXGroup;
+			children = (
+				AA000013000000000000CCCC /* FaceSmasher */,
+				AA000010000000000000CCCC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,11 +103,11 @@
 /* Begin PBXNativeTarget section */
 		A1B2C3D4E5F6A7B8C9D0E1F2 /* FaceSmasher */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA00001200000000000000AA /* Build configuration list for PBXNativeTarget "FaceSmasher" */;
+			buildConfigurationList = II2B3C4D5E6F7A8B /* Build configuration list for PBXNativeTarget "FaceSmasher" */;
 			buildPhases = (
-				AA00001300000000000000AA /* Sources */,
-				AA00000C00000000000000AA /* Frameworks */,
-				AA00001400000000000000AA /* Resources */,
+				AA00001700000000000000CC /* Sources */,
+				AA00001600000000000000CC /* Resources */,
+				AA00000D000000000000000A /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,7 +133,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA00001500000000000000AA /* Build configuration list for PBXProject "FaceSmasher" */;
+			buildConfigurationList = LL2B3C4D5E6F7A8B /* Build configuration list for PBXProject "FaceSmasher" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -138,8 +141,8 @@
 				en,
 				Base,
 			);
-			mainGroup = AA00001100000000000000AA;
-			productRefGroup = AA00000D00000000000000AA /* Products */;
+			mainGroup = AA000014000000000000CCCC;
+			productRefGroup = AA000010000000000000CCCC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -149,18 +152,19 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AA00001400000000000000AA /* Resources */ = {
+		AA00001600000000000000CC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AA00000A000000000000000A /* Assets.xcassets in Resources */,
+				AA00000C000000000000000A /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AA00001300000000000000AA /* Sources */ = {
+		AA00001700000000000000CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -179,7 +183,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		AA00001600000000000000AA /* Debug */ = {
+		MM2B3C4D5E6F7A8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -199,10 +203,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_LOOPS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -241,7 +245,7 @@
 			};
 			name = Debug;
 		};
-		AA00001700000000000000AA /* Release */ = {
+		NN2B3C4D5E6F7A8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -261,10 +265,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_LOOPS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -295,7 +299,7 @@
 			};
 			name = Release;
 		};
-		AA00001800000000000000AA /* Debug */ = {
+		OO2B3C4D5E6F7A8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -320,7 +324,7 @@
 			};
 			name = Debug;
 		};
-		AA00001900000000000000AA /* Release */ = {
+		PP2B3C4D5E6F7A8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -348,20 +352,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA00001200000000000000AA /* Build configuration list for PBXNativeTarget "FaceSmasher" */ = {
+		II2B3C4D5E6F7A8B /* Build configuration list for PBXNativeTarget "FaceSmasher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA00001800000000000000AA /* Debug */,
-				AA00001900000000000000AA /* Release */,
+				OO2B3C4D5E6F7A8B /* Debug */,
+				PP2B3C4D5E6F7A8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA00001500000000000000AA /* Build configuration list for PBXProject "FaceSmasher" */ = {
+		LL2B3C4D5E6F7A8B /* Build configuration list for PBXProject "FaceSmasher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA00001600000000000000AA /* Debug */,
-				AA00001700000000000000AA /* Release */,
+				MM2B3C4D5E6F7A8B /* Debug */,
+				NN2B3C4D5E6F7A8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

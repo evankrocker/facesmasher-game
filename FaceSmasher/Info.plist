@@ -2,27 +2,43 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Face Smasher needs access to your photos to let you choose a face for the game.</string>
-    <key>UILaunchScreen</key>
-    <dict/>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-    </array>
-    <key>CFBundleName</key>
-    <string>FaceSmasher</string>
-    <key>CFBundleDisplayName</key>
-    <string>Face Smasher</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.facesmasher.game</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>LSRequiresIPhoneOS</key>
-    <true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Face Smasher needs access to your photos to let you choose a face for the game.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Face Smasher can use your camera to take a photo to use as your game face.</string>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>FaceSmasher</string>
+	<key>CFBundleDisplayName</key>
+	<string>Face Smasher</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.facesmasher.game</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
 </dict>
 </plist>

@@ -11,12 +11,11 @@ struct PhotoSetupView: View {
     @State private var cropOffset: CGSize = .zero
     @State private var lastScale: CGFloat = 1.0
     @State private var lastOffset: CGSize = .zero
-    @State private var showPicker = false
 
     private let previewSize: CGFloat = 240
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color(red: 0.1, green: 0.1, blue: 0.18).ignoresSafeArea()
 
@@ -39,7 +38,6 @@ struct PhotoSetupView: View {
                                 .frame(width: previewSize, height: previewSize)
                                 .clipped()
 
-                            // Dark overlay with circular cutout
                             CropOverlay(size: previewSize)
                         }
                         .frame(width: previewSize, height: previewSize)
@@ -50,7 +48,7 @@ struct PhotoSetupView: View {
                                     .onChanged { value in
                                         cropScale = max(1.0, lastScale * value)
                                     }
-                                    .onEnded { value in
+                                    .onEnded { _ in
                                         lastScale = cropScale
                                     },
                                 DragGesture()
@@ -60,13 +58,15 @@ struct PhotoSetupView: View {
                                             height: lastOffset.height + value.translation.height
                                         )
                                     }
-                                    .onEnded { value in
+                                    .onEnded { _ in
                                         lastOffset = cropOffset
                                     }
                             )
                         )
+                        .accessibilityLabel("Face crop preview")
+                        .accessibilityHint("Pinch to zoom and drag to reposition your face")
 
-                        Text("Pinch to zoom, drag to reposition")
+                        Text("Pinch to zoom · Drag to reposition")
                             .font(.caption)
                             .foregroundColor(.white.opacity(0.6))
 
@@ -84,8 +84,8 @@ struct PhotoSetupView: View {
                                 .background(Color.yellow)
                                 .clipShape(Capsule())
                         }
+                        .accessibilityLabel("Use this photo as your game face")
                     } else {
-                        // Empty state
                         Circle()
                             .fill(Color.gray.opacity(0.2))
                             .frame(width: previewSize, height: previewSize)
@@ -94,10 +94,11 @@ struct PhotoSetupView: View {
                                     .font(.system(size: 60))
                                     .foregroundColor(.gray)
                             )
+                            .accessibilityLabel("No photo selected")
                     }
 
                     PhotosPicker(selection: $selectedItem, matching: .images) {
-                        Label("Choose Photo", systemImage: "photo.on.rectangle")
+                        Label("Choose from Library", systemImage: "photo.on.rectangle")
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundColor(.white)
                             .padding(.horizontal, 28)
@@ -105,31 +106,30 @@ struct PhotoSetupView: View {
                             .background(Color.blue.opacity(0.7))
                             .clipShape(Capsule())
                     }
-                    .onChange(of: selectedItem) { newItem in
-                        Task {
-                            if let data = try? await newItem?.loadTransferable(type: Data.self),
-                               let uiImage = UIImage(data: data) {
-                                await MainActor.run {
-                                    pickedImage = uiImage
-                                    cropScale = 1.0
-                                    cropOffset = .zero
-                                    lastScale = 1.0
-                                    lastOffset = .zero
-                                }
-                            }
-                        }
-                    }
 
                     Spacer()
                 }
                 .padding(.top, 20)
             }
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Cancel") { dismiss() }
                         .foregroundColor(.yellow)
                 }
+            }
+        }
+        .task(id: selectedItem) {
+            guard let item = selectedItem,
+                  let data = try? await item.loadTransferable(type: Data.self),
+                  let uiImage = UIImage(data: data) else { return }
+            await MainActor.run {
+                pickedImage = uiImage
+                cropScale = 1.0
+                cropOffset = .zero
+                lastScale = 1.0
+                lastOffset = .zero
             }
         }
     }
@@ -139,11 +139,8 @@ struct PhotoSetupView: View {
         let renderer = UIGraphicsImageRenderer(size: size)
         return renderer.image { ctx in
             let context = ctx.cgContext
-            // Clip to circle
             context.addEllipse(in: CGRect(origin: .zero, size: size))
             context.clip()
-
-            // Calculate draw rect based on scale and offset
             let scaledSize = CGSize(width: size.width * cropScale, height: size.height * cropScale)
             let origin = CGPoint(
                 x: (size.width - scaledSize.width) / 2 + cropOffset.width,
@@ -159,9 +156,7 @@ struct CropOverlay: View {
 
     var body: some View {
         ZStack {
-            // Dark overlay
             Color.black.opacity(0.5)
-            // Cut out circle
             Circle()
                 .frame(width: size * 0.85, height: size * 0.85)
                 .blendMode(.destinationOut)
@@ -173,5 +168,6 @@ struct CropOverlay: View {
                 .stroke(Color.yellow, lineWidth: 2)
                 .frame(width: size * 0.85, height: size * 0.85)
         )
+        .allowsHitTesting(false)
     }
 }

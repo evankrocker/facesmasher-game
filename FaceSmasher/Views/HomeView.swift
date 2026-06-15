@@ -69,6 +69,8 @@ struct HomeView: View {
                             }
                         }
                     }
+                    .accessibilityLabel(gameState.faceImage != nil ? "Change face photo" : "Set face photo")
+                    .accessibilityHint("Opens photo picker to choose your game face")
 
                     // Difficulty
                     VStack(spacing: 8) {
@@ -106,6 +108,8 @@ struct HomeView: View {
                                 .shadow(color: .orange.opacity(0.4), radius: 8)
                         }
                         .disabled(gameState.faceImage == nil)
+                        .accessibilityLabel("Play Face Smasher")
+                        .accessibilityHint(gameState.faceImage == nil ? "Set a face photo first" : "Starts a new game on \(gameState.difficulty.rawValue) difficulty")
                         .padding(.horizontal, 40)
 
                         if gameState.faceImage == nil {
@@ -135,7 +139,7 @@ struct HomeView: View {
                         .padding(.bottom, 8)
                 }
             }
-            .navigationBarHidden(true)
+            .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: $showPhotoSetup) {
                 PhotoSetupView()
                     .environmentObject(gameState)
