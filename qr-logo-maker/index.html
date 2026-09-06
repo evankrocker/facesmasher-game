@@ -3,10 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-<title>QR Logo Maker — Create a Scannable Contact Card QR Code</title>
-<meta name="description" content="Create a downloadable QR code contact card (vCard) for iOS and Android, with your own logo in the middle. 100% free, nothing is uploaded or stored.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Crect x='18' y='18' width='24' height='24' fill='white'/%3E%3Crect x='58' y='18' width='24' height='24' fill='white'/%3E%3Crect x='18' y='58' width='24' height='24' fill='white'/%3E%3Crect x='58' y='58' width='10' height='10' fill='white'/%3E%3Crect x='72' y='72' width='10' height='10' fill='white'/%3E%3C/svg%3E">
+<title>QR Logo Maker — Free vCard QR Code Generator with Your Logo</title>
+<meta name="description" content="Create a free QR code contact card (vCard) with your own logo in the middle. Works with iPhone and Android contacts. Nothing is ever uploaded or stored.">
+<meta name="keywords" content="QR code contact card, vCard QR code generator, QR code with logo, digital business card QR code, QR code maker free">
+<meta name="robots" content="index, follow">
+<meta name="author" content="QR Logo Maker">
+<link rel="canonical" href="https://qrlogomaker.com/">
+
+<!-- Open Graph / Facebook, LinkedIn, iMessage previews -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qrlogomaker.com/">
+<meta property="og:site_name" content="QR Logo Maker">
+<meta property="og:title" content="QR Logo Maker — Free vCard QR Code Generator with Your Logo">
+<meta property="og:description" content="Create a free QR code contact card (vCard) with your own logo in the middle. Works with iPhone and Android contacts. Nothing is ever uploaded or stored.">
+<meta property="og:image" content="https://qrlogomaker.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="QR Logo Maker — free QR code contact cards with your logo in the middle">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QR Logo Maker — Free vCard QR Code Generator with Your Logo">
+<meta name="twitter:description" content="Create a free QR code contact card (vCard) with your own logo in the middle. Works with iPhone and Android contacts. Nothing is ever uploaded or stored.">
+<meta name="twitter:image" content="https://qrlogomaker.com/assets/og-image.png">
+
+<meta name="theme-color" content="#6c5ce7">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Crect x='18' y='18' width='24' height='24' fill='white'/%3E%3Crect x='58' y='18' width='24' height='24' fill='white'/%3E%3Crect x='18' y='58' width='24' height='24' fill='white'/%3E%3Crect x='58' y='58' width='10' height='10' fill='white'/%3E%3Crect x='72' y='72' width='10' height='10' fill='white'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="css/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "QR Logo Maker",
+  "url": "https://qrlogomaker.com/",
+  "description": "Create a free QR code contact card (vCard) with your own logo in the middle. Works with iPhone and Android contacts. Nothing is ever uploaded or stored.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires a modern web browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the QR code work on both iPhone and Android?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. QR Logo Maker generates a standard vCard, the same contact-card format built into every phone. Scanning it with the iPhone Camera app or an Android camera / Google Lens opens an \"Add Contact\" screen with all the details filled in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my contact information stored anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The contact card and QR code are built entirely in your browser. Nothing you type, and no image you upload, is ever sent to a server or saved — closing the tab clears everything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put my own logo in the middle of the QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Upload any PNG, JPG, WebP, or SVG image and it will be placed in the center of the QR code. The code is generated with high error correction so it still scans reliably with a logo covering part of it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is QR Logo Maker free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, QR Logo Maker is completely free, with no sign-up and no limit on how many QR codes you generate."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -28,7 +112,7 @@
           <rect x="72" y="72" width="10" height="10" fill="#6c5ce7"/>
         </svg>
       </span>
-      <span class="brand-name">QR Logo Maker</span>
+      <h1 class="brand-name">QR Logo Maker</h1>
     </div>
     <p class="tagline">Build a scannable contact‑card QR code with your logo in the middle — free, private, and instant.</p>
   </div>
@@ -206,6 +290,36 @@
         <a id="downloadBtn" class="btn-primary" download="contact-qr-code.png">Download QR Code</a>
         <button type="button" id="downloadVcfBtn" class="btn-secondary">Download .vcf contact file</button>
       </div>
+    </div>
+  </section>
+
+  <section class="card content-section" aria-labelledby="how-it-works-heading">
+    <h2 id="how-it-works-heading">How the QR code contact card generator works</h2>
+    <ol class="steps">
+      <li><strong>Fill in your details.</strong> Add your name, company, phone numbers, emails, addresses, websites, and social profiles — every field a standard contact card supports.</li>
+      <li><strong>Add your logo (optional).</strong> Upload an image and it's placed in the middle of the QR code, over a white backing so it stays sharp and the code stays scannable.</li>
+      <li><strong>Generate and download.</strong> Your details are turned into a vCard — the same format iPhone and Android contacts use — and encoded into a downloadable QR code, plus a matching <code>.vcf</code> file.</li>
+      <li><strong>Share it anywhere.</strong> Print it on a business card, add it to an email signature, or display it on a screen. Scanning it with a phone camera opens "Add Contact" instantly.</li>
+    </ol>
+  </section>
+
+  <section class="card content-section" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>Does the QR code work on both iPhone and Android?</h3>
+      <p>Yes. QR Logo Maker generates a standard vCard, the same contact-card format built into every phone. Scanning it with the iPhone Camera app or an Android camera / Google Lens opens an "Add Contact" screen with all the details filled in.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my contact information stored anywhere?</h3>
+      <p>No. The contact card and QR code are built entirely in your browser. Nothing you type, and no image you upload, is ever sent to a server or saved — closing the tab clears everything.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I put my own logo in the middle of the QR code?</h3>
+      <p>Yes. Upload any PNG, JPG, WebP, or SVG image and it will be placed in the center of the QR code. The code is generated with high error correction so it still scans reliably with a logo covering part of it.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is QR Logo Maker free to use?</h3>
+      <p>Yes, QR Logo Maker is completely free, with no sign-up and no limit on how many QR codes you generate.</p>
     </div>
   </section>
 

@@ -69,7 +69,7 @@ img { max-width: 100%; }
 }
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand-mark { color: #fff; display: inline-flex; }
-.brand-name { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
+.brand-name { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
 .tagline { margin: 10px 0 0; max-width: 46em; font-size: 1.02rem; opacity: 0.95; }
 
 main.wrap { padding-top: 22px; padding-bottom: 60px; }
@@ -282,6 +282,28 @@ input[type="color"] {
 #qrCanvas { width: min(280px, 60vw); height: auto; display: block; }
 .result-actions { display: flex; flex-direction: column; gap: 12px; max-width: 320px; }
 .result-actions .btn-primary, .result-actions .btn-secondary { width: 100%; }
+
+/* SEO content sections: How it works / FAQ */
+.content-section h2 {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+}
+.content-section h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+.content-section p { margin: 0; color: var(--ink-soft); }
+.steps {
+  margin: 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.steps li { color: var(--ink-soft); }
+.steps strong { color: var(--ink); }
+.faq-item { padding: 12px 0; border-top: 1px solid var(--border); }
+.faq-item:first-of-type { border-top: none; padding-top: 0; }
 
 /* Footer */
 .site-footer {

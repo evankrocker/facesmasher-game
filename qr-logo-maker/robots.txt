@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /data/
+Disallow: /counter.php
+
+Sitemap: https://qrlogomaker.com/sitemap.xml

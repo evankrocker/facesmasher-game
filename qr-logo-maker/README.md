@@ -64,10 +64,18 @@ just uploading files — no build step, no npm install, no server process.
    ```
    public_html/
      index.html
+     robots.txt
+     sitemap.xml
+     manifest.json
      css/styles.css
      js/app.js
      js/qrcode.min.js
      js/QRCODEJS-LICENSE.txt
+     assets/og-image.png
+     assets/icon-192.png
+     assets/icon-512.png
+     assets/apple-touch-icon.png
+     assets/favicon-32.png
      counter.php
      data/counter.json
      data/.htaccess
@@ -88,6 +96,46 @@ just uploading files — no build step, no npm install, no server process.
 
 No build tools, CDNs, frameworks, or third-party JavaScript are required
 for the core site — everything needed to run it is in this folder.
+
+## SEO: getting it into Google search results
+
+Everything that can be done from the site's own files is already in
+place:
+
+- Unique `<title>` and meta description, a single `<h1>`, and real
+  crawlable copy ("How it works" and an FAQ section) that matches the
+  page's structured data.
+- `robots.txt` (allows crawling, points to the sitemap) and
+  `sitemap.xml` (lists the homepage) at the site root.
+- Open Graph and Twitter Card tags, plus `assets/og-image.png`, so links
+  shared on social media, Slack, or iMessage show a proper preview card.
+- `WebApplication` and `FAQPage` structured data (JSON-LD) in
+  `index.html`, so Google can show rich results (e.g. FAQ snippets) —
+  the copy in the FAQ section is written to match it exactly.
+- `manifest.json` plus real PNG icons (`assets/icon-*.png`,
+  `apple-touch-icon.png`, `favicon-32.png`) for browser tabs, the iOS
+  home screen, and Android's "Add to Home Screen."
+
+What only you can do, since it requires proving ownership of the domain:
+
+1. **Verify the site in [Google Search Console](https://search.google.com/search-console).**
+   Add `qrlogomaker.com` as a property. The easiest verification method
+   for a static site is usually **DNS verification** (add a TXT record
+   at your domain registrar) — no file changes needed. Alternatively,
+   Search Console will give you an HTML verification file or meta tag to
+   add to `index.html`.
+2. **Submit the sitemap.** In Search Console, go to *Sitemaps* and submit
+   `sitemap.xml` (i.e. `https://qrlogomaker.com/sitemap.xml`).
+3. **Request indexing** for the homepage under *URL Inspection* so Google
+   crawls it right away instead of waiting for its normal schedule.
+4. Optional but useful: verify the same domain in
+   [Bing Webmaster Tools](https://www.bing.com/webmasters) (it can import
+   your Google Search Console verification directly) so the site also
+   turns up in Bing/Yahoo results.
+
+If you change the domain from `qrlogomaker.com`, update the absolute
+URLs in `index.html` (`og:url`, `og:image`, canonical link, JSON-LD
+`url`), `sitemap.xml`, and `robots.txt` to match.
 
 ## Customizing
 
