@@ -1,0 +1,8 @@
+# Block direct web access to this folder; counter.php reads/writes it
+# via the filesystem, not over HTTP, so nothing here needs to be public.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Deny from all
+</IfModule>

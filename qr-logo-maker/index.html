@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>QR Logo Maker — Create a Scannable Contact Card QR Code</title>
+<meta name="description" content="Create a downloadable QR code contact card (vCard) for iOS and Android, with your own logo in the middle. 100% free, nothing is uploaded or stored.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236c5ce7'/%3E%3Crect x='18' y='18' width='24' height='24' fill='white'/%3E%3Crect x='58' y='18' width='24' height='24' fill='white'/%3E%3Crect x='18' y='58' width='24' height='24' fill='white'/%3E%3Crect x='58' y='58' width='10' height='10' fill='white'/%3E%3Crect x='72' y='72' width='10' height='10' fill='white'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="counter-ticker" class="ticker" role="status" aria-live="polite">
+  <span class="ticker-dot" aria-hidden="true"></span>
+  <span id="ticker-text"><strong id="ticker-count">—</strong> QR codes generated so far</span>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="34" height="34">
+          <rect width="100" height="100" rx="20" fill="#ffffff"/>
+          <rect x="18" y="18" width="24" height="24" fill="#6c5ce7"/>
+          <rect x="58" y="18" width="24" height="24" fill="#6c5ce7"/>
+          <rect x="18" y="58" width="24" height="24" fill="#6c5ce7"/>
+          <rect x="58" y="58" width="10" height="10" fill="#6c5ce7"/>
+          <rect x="72" y="72" width="10" height="10" fill="#6c5ce7"/>
+        </svg>
+      </span>
+      <span class="brand-name">QR Logo Maker</span>
+    </div>
+    <p class="tagline">Build a scannable contact‑card QR code with your logo in the middle — free, private, and instant.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="privacy-banner" aria-label="Privacy notice">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 1l8 4v6c0 5.5-3.4 9.7-8 11-4.6-1.3-8-5.5-8-11V5l8-4zm0 2.2L6 6v5c0 4.4 2.6 7.9 6 8.9 3.4-1 6-4.5 6-8.9V6l-6-2.8z"/></svg>
+    <p>Everything happens right here in your browser. Your contact details and photo are <strong>never uploaded, transmitted, or stored</strong> anywhere — closing this tab clears everything.</p>
+  </section>
+
+  <form id="qr-form" novalidate>
+
+    <!-- NAME -->
+    <fieldset class="card">
+      <legend>Name</legend>
+      <div class="grid grid-5">
+        <div class="field">
+          <label for="prefix">Prefix</label>
+          <select id="prefix">
+            <option value="">—</option>
+            <option>Mr.</option><option>Mrs.</option><option>Ms.</option><option>Miss</option>
+            <option>Mx.</option><option>Dr.</option><option>Prof.</option><option>Rev.</option><option>Fr.</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" autocomplete="given-name" placeholder="Jamie">
+        </div>
+        <div class="field">
+          <label for="middleName">Middle name</label>
+          <input type="text" id="middleName" autocomplete="additional-name" placeholder="Lee">
+        </div>
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input type="text" id="lastName" autocomplete="family-name" placeholder="Rivera">
+        </div>
+        <div class="field">
+          <label for="suffix">Suffix</label>
+          <select id="suffix">
+            <option value="">—</option>
+            <option>Jr.</option><option>Sr.</option><option>II</option><option>III</option><option>IV</option>
+            <option>PhD</option><option>MD</option><option>Esq.</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="field">
+          <label for="nickname">Nickname</label>
+          <input type="text" id="nickname" autocomplete="nickname" placeholder="Jay">
+        </div>
+        <div class="field">
+          <label for="birthday">Birthday</label>
+          <input type="date" id="birthday">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- ORG -->
+    <fieldset class="card">
+      <legend>Work</legend>
+      <div class="grid grid-3">
+        <div class="field">
+          <label for="org">Company / Organization</label>
+          <input type="text" id="org" autocomplete="organization" placeholder="Acme Inc.">
+        </div>
+        <div class="field">
+          <label for="title">Job title</label>
+          <input type="text" id="title" autocomplete="organization-title" placeholder="Product Designer">
+        </div>
+        <div class="field">
+          <label for="department">Department</label>
+          <input type="text" id="department" placeholder="Marketing">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- PHONES -->
+    <fieldset class="card">
+      <legend>Phone numbers</legend>
+      <div id="phone-list" class="repeat-list"></div>
+      <button type="button" class="btn-add" data-add="phone">+ Add phone number</button>
+    </fieldset>
+
+    <!-- EMAILS -->
+    <fieldset class="card">
+      <legend>Email addresses</legend>
+      <div id="email-list" class="repeat-list"></div>
+      <button type="button" class="btn-add" data-add="email">+ Add email address</button>
+    </fieldset>
+
+    <!-- ADDRESSES -->
+    <fieldset class="card">
+      <legend>Addresses</legend>
+      <div id="address-list" class="repeat-list"></div>
+      <button type="button" class="btn-add" data-add="address">+ Add address</button>
+    </fieldset>
+
+    <!-- WEBSITES -->
+    <fieldset class="card">
+      <legend>Websites</legend>
+      <div id="url-list" class="repeat-list"></div>
+      <button type="button" class="btn-add" data-add="url">+ Add website</button>
+    </fieldset>
+
+    <!-- SOCIAL -->
+    <fieldset class="card">
+      <legend>Social profiles</legend>
+      <div id="social-list" class="repeat-list"></div>
+      <button type="button" class="btn-add" data-add="social">+ Add social profile</button>
+      <p class="hint">Support for social profile links varies by phone and contacts app.</p>
+    </fieldset>
+
+    <!-- NOTES -->
+    <fieldset class="card">
+      <legend>Notes</legend>
+      <div class="field">
+        <label for="notes">Note</label>
+        <textarea id="notes" rows="3" placeholder="Anything else you'd like included on the contact card"></textarea>
+      </div>
+    </fieldset>
+
+    <!-- LOGO -->
+    <fieldset class="card">
+      <legend>Logo in the middle of the QR code</legend>
+      <div class="logo-row">
+        <div class="logo-upload">
+          <input type="file" id="logoFile" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+          <label for="logoFile" class="btn-secondary">Choose image…</label>
+          <button type="button" id="logoRemove" class="btn-text" hidden>Remove logo</button>
+        </div>
+        <img id="logoPreview" alt="Logo preview" hidden>
+      </div>
+      <p class="hint">Optional. PNG or JPG with a square-ish crop works best. The QR code uses high error‑correction so it stays scannable with a logo on top.</p>
+    </fieldset>
+
+    <!-- QR STYLE -->
+    <fieldset class="card">
+      <legend>QR code style</legend>
+      <div class="grid grid-3">
+        <div class="field">
+          <label for="qrSize">Size</label>
+          <select id="qrSize">
+            <option value="600">Medium (600px)</option>
+            <option value="1000" selected>Large (1000px)</option>
+            <option value="1600">Extra large (1600px)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="qrDark">Code color</label>
+          <input type="color" id="qrDark" value="#1a1a2e">
+        </div>
+        <div class="field">
+          <label for="qrLight">Background color</label>
+          <input type="color" id="qrLight" value="#ffffff">
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="generate-row">
+      <button type="submit" id="generateBtn" class="btn-primary">Generate QR Code</button>
+      <p id="formError" class="form-error" role="alert" hidden></p>
+    </div>
+  </form>
+
+  <section id="result" class="card result-card" hidden>
+    <h2>Your contact QR code</h2>
+    <div class="result-body">
+      <div class="qr-preview-wrap">
+        <canvas id="qrCanvas"></canvas>
+      </div>
+      <div class="result-actions">
+        <p>Scan it with any phone camera to add <strong id="resultName">this contact</strong> — works on both iOS and Android.</p>
+        <a id="downloadBtn" class="btn-primary" download="contact-qr-code.png">Download QR Code</a>
+        <button type="button" id="downloadVcfBtn" class="btn-secondary">Download .vcf contact file</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>QR Logo Maker — generated entirely in your browser. No contact data is ever sent to a server.</p>
+  </div>
+</footer>
+
+<!-- Hidden element used internally to render the raw QR code before compositing the logo -->
+<div id="qr-render-target" style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true"></div>
+
+<script src="js/qrcode.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
