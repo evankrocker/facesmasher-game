@@ -76,6 +76,83 @@ body {
   color: rgba(255, 255, 255, 0.9);
 }
 
+/* ---------- Intro / FAQ (SEO content) ---------- */
+.intro {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.intro-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  text-align: center;
+}
+
+.intro h2 {
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+  color: var(--primary-dark);
+}
+
+.intro p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.faq {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.faq-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.faq h2 {
+  margin: 0 0 18px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.faq details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  background: #fbfcfc;
+}
+
+.faq summary {
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::before {
+  content: "+ ";
+  color: var(--primary);
+}
+
+.faq details[open] summary::before {
+  content: "\2212 ";
+}
+
+.faq details p {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
 /* ---------- Layout ---------- */
 .layout {
   max-width: 1080px;

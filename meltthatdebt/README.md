@@ -23,12 +23,62 @@ the top banner promises, and it's true by construction, not by policy.
 
 ## Files
 
-- `index.html` — page structure and content (including the disclaimer banner and footer)
+- `index.html` — page structure and content (including the disclaimer banner, SEO/meta tags, intro copy, FAQ, and footer)
 - `styles.css` — all styling
 - `script.js` — form handling, the snowball simulation, and the chart
+- `robots.txt` — allows all crawlers, points to the sitemap
+- `sitemap.xml` — single-URL sitemap for the home page
+- `manifest.json` — PWA manifest (name, theme color, icons) for "add to home screen"
+- `404.html` — simple not-found page that links back to the calculator
+- `assets/og-image.png` — 1200×630 social share image (Open Graph / Twitter Card)
+- `assets/icon-*.png` — favicon and home-screen icons (32, 180, 192, 512px)
 
 No build step, no dependencies, no package.json — just open `index.html` in a
 browser or serve the folder as-is.
+
+## SEO
+
+The page is set up so a Google Search Console submission is close to a
+one-click job:
+
+- **On-page**: a keyword-focused `<title>` and meta description, an intro
+  paragraph and FAQ section written around real search terms (debt snowball
+  calculator, debt payoff calculator, credit card payoff calculator, debt
+  avalanche vs. snowball, etc.), a single `<h1>`, and semantic heading order.
+- **Meta tags**: `description`, `keywords`, `robots`, `theme-color`, and a
+  `canonical` link pointed at `https://meltthatdebt.com/`.
+- **Social previews**: Open Graph and Twitter Card tags plus a generated
+  `assets/og-image.png` so links shared on Slack/X/LinkedIn/iMessage show a
+  proper preview card instead of a blank one.
+- **Structured data**: two JSON-LD blocks in `<head>` — a `WebApplication`
+  schema describing the tool, and a `FAQPage` schema that mirrors the visible
+  FAQ section word-for-word (Google currently only shows FAQ rich snippets
+  for a narrow set of authoritative sites, but the markup is still valid,
+  future-proof, and helps search engines understand the page either way).
+- **Crawling**: `robots.txt` and `sitemap.xml` at the site root.
+- **Icons/PWA**: `manifest.json` and generated icon files so the site can be
+  "installed" and shows a real icon everywhere, not a generic globe.
+
+### Before/after going live, double-check
+
+1. **Domain**: every absolute URL (`canonical`, `og:url`, `og:image`,
+   `twitter:image`, the sitemap's `<loc>`, `robots.txt`'s `Sitemap:` line) is
+   hardcoded to `https://meltthatdebt.com/`. If you deploy to a different
+   domain or a subpath, update those before submitting to Google.
+2. **Search Console**: after DNS/hosting is live, add the property at
+   [search.google.com/search-console](https://search.google.com/search-console),
+   verify ownership (most static hosts support a DNS TXT record or an HTML
+   file upload), then submit `https://meltthatdebt.com/sitemap.xml` under
+   Sitemaps. You can also use "Request Indexing" on the URL Inspection tool
+   to speed up the first crawl instead of waiting for Google to find it.
+3. **Rich results test**: paste the live URL into
+   [Google's Rich Results Test](https://search.google.com/test/rich-results)
+   to confirm the `WebApplication`/`FAQPage` structured data parses cleanly.
+4. **Social preview check**: use
+   [Facebook's Sharing Debugger](https://developers.facebook.com/tools/debug/)
+   or [Twitter Card Validator](https://cards-dev.twitter.com/validator) once
+   live to confirm `assets/og-image.png` renders correctly (these tools fetch
+   the live URL, so they only work after deployment).
 
 ## Deploying to meltthatdebt.com
 

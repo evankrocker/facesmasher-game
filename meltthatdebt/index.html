@@ -4,9 +4,126 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Melt That Debt — Free Debt Snowball Calculator</title>
-<meta name="description" content="A free, private debt snowball calculator. Add up to 5 debts and get a month-by-month payoff plan. Nothing you type is ever stored or sent anywhere." />
+
+<!-- Primary SEO meta -->
+<meta name="description" content="Free debt snowball calculator that shows exactly how to pay off credit cards, personal loans, and medical bills fastest. Add up to 5 debts, see your debt-free date, total interest paid, and a full month-by-month payoff plan. No signup, nothing stored." />
+<meta name="keywords" content="debt snowball calculator, debt payoff calculator, credit card debt calculator, pay off debt fast, debt free calculator, debt reduction calculator, debt elimination plan, debt snowball method, debt avalanche vs snowball, personal finance calculator, budgeting tool, loan payoff calculator, credit card payoff plan, financial freedom calculator, get out of debt, minimum payment calculator, debt free date calculator, how to pay off credit card debt, student loan payoff, medical debt payoff" />
+<meta name="author" content="Melt That Debt" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0f7a5c" />
+<link rel="canonical" href="https://meltthatdebt.com/" />
+
+<!-- Open Graph / Facebook / LinkedIn / Slack unfurls -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Melt That Debt" />
+<meta property="og:title" content="Melt That Debt — Free Debt Snowball Calculator" />
+<meta property="og:description" content="Add up to 5 debts and get a free, private debt snowball payoff plan: debt-free date, total interest paid, and a month-by-month schedule. Nothing is ever stored." />
+<meta property="og:url" content="https://meltthatdebt.com/" />
+<meta property="og:image" content="https://meltthatdebt.com/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Melt That Debt — free debt snowball calculator" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Melt That Debt — Free Debt Snowball Calculator" />
+<meta name="twitter:description" content="Add up to 5 debts and get a free, private debt snowball payoff plan: debt-free date, total interest paid, and a month-by-month schedule." />
+<meta name="twitter:image" content="https://meltthatdebt.com/assets/og-image.png" />
+<meta name="twitter:image:alt" content="Melt That Debt — free debt snowball calculator" />
+
+<!-- Icons / PWA -->
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon-32.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon-180.png" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>" />
+
 <link rel="stylesheet" href="styles.css" />
+
+<!-- Structured data: describes the tool itself -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Melt That Debt",
+  "url": "https://meltthatdebt.com/",
+  "description": "A free, private debt snowball calculator. Add up to 5 debts (credit cards, loans, medical bills) and get a month-by-month payoff plan showing your debt-free date and total interest paid.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (runs in any modern web browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Debt snowball payoff calculator",
+    "Supports up to 5 debts",
+    "Debt-free date estimate",
+    "Total interest paid estimate",
+    "Month-by-month payoff schedule",
+    "No signup or data storage required"
+  ]
+}
+</script>
+
+<!-- Structured data: FAQ content matches the visible FAQ section below -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the debt snowball method?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The debt snowball method is a debt payoff strategy where you list your debts from smallest balance to largest, pay the minimum on all of them, and put every extra dollar toward the smallest balance first. Once that debt is paid off, you roll its payment into the next-smallest debt, so your payment 'snowballs' and grows as each debt disappears."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Debt snowball vs. debt avalanche: what's the difference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The debt snowball method targets your smallest balance first, which builds momentum and quick wins. The debt avalanche method targets your highest interest rate first, which usually saves more money in total interest. This calculator uses the snowball method because the fast early payoffs tend to keep people motivated enough to finish."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is my debt-free date calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The calculator simulates your debts month by month: interest accrues on each balance, minimum payments are made on every debt, and any extra monthly payment is applied to your current target debt. As each debt is paid off, its minimum payment rolls into the next one. The date is simply today's date plus the number of months that simulation takes to reach a zero balance on every debt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my financial information stored or shared?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Melt That Debt runs entirely in your browser with no backend server, database, or analytics. Nothing you type is ever transmitted or saved anywhere, and it disappears as soon as you close or refresh the tab."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for credit cards, student loans, and medical bills?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can add up to 5 debts of any kind, including credit cards, personal loans, auto loans, student loans, and medical bills, as long as you know the balance, interest rate, and minimum monthly payment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Melt That Debt financial advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Melt That Debt is a free educational tool, not financial, legal, or tax advice. It uses a simplified model and may not match your real statements exactly. For advice specific to your situation, talk to a certified financial planner or a nonprofit credit counselor."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -24,6 +141,15 @@
     <p class="tagline">Free debt snowball calculator. Add your debts, get a payoff plan, watch the balances disappear.</p>
   </div>
 </header>
+
+<section class="intro">
+  <div class="intro-inner">
+    <h2>A free online debt snowball calculator</h2>
+    <p>
+      Melt That Debt is a free debt payoff calculator built around the debt snowball method: pay the minimum on every debt, then throw every extra dollar at your smallest balance until it's gone, then roll that payment into the next one. Use it as a credit card payoff calculator, a student loan or auto loan payoff planner, or a general debt reduction calculator for medical bills and personal loans. Enter up to 5 debts and your extra monthly payment, and see your projected debt-free date, total interest paid, and a full month-by-month debt elimination plan &mdash; instantly, with no signup and nothing stored.
+    </p>
+  </div>
+</section>
 
 <main class="layout">
 
@@ -93,6 +219,42 @@
   </section>
 
 </main>
+
+<section class="faq" aria-labelledby="faq-heading">
+  <div class="faq-inner">
+    <h2 id="faq-heading">Debt snowball calculator FAQ</h2>
+
+    <details>
+      <summary>What is the debt snowball method?</summary>
+      <p>The debt snowball method is a debt payoff strategy where you list your debts from smallest balance to largest, pay the minimum on all of them, and put every extra dollar toward the smallest balance first. Once that debt is paid off, you roll its payment into the next-smallest debt, so your payment "snowballs" and grows as each debt disappears.</p>
+    </details>
+
+    <details>
+      <summary>Debt snowball vs. debt avalanche: what's the difference?</summary>
+      <p>The debt snowball method targets your smallest balance first, which builds momentum and quick wins. The debt avalanche method targets your highest interest rate first, which usually saves more money in total interest. This calculator uses the snowball method because the fast early payoffs tend to keep people motivated enough to finish.</p>
+    </details>
+
+    <details>
+      <summary>How is my debt-free date calculated?</summary>
+      <p>The calculator simulates your debts month by month: interest accrues on each balance, minimum payments are made on every debt, and any extra monthly payment is applied to your current target debt. As each debt is paid off, its minimum payment rolls into the next one. The date is simply today's date plus the number of months that simulation takes to reach a zero balance on every debt.</p>
+    </details>
+
+    <details>
+      <summary>Is my financial information stored or shared?</summary>
+      <p>No. Melt That Debt runs entirely in your browser with no backend server, database, or analytics. Nothing you type is ever transmitted or saved anywhere, and it disappears as soon as you close or refresh the tab.</p>
+    </details>
+
+    <details>
+      <summary>Can I use this calculator for credit cards, student loans, and medical bills?</summary>
+      <p>Yes. You can add up to 5 debts of any kind, including credit cards, personal loans, auto loans, student loans, and medical bills, as long as you know the balance, interest rate, and minimum monthly payment.</p>
+    </details>
+
+    <details>
+      <summary>Is Melt That Debt financial advice?</summary>
+      <p>No. Melt That Debt is a free educational tool, not financial, legal, or tax advice. It uses a simplified model and may not match your real statements exactly. For advice specific to your situation, talk to a certified financial planner or a nonprofit credit counselor.</p>
+    </details>
+  </div>
+</section>
 
 <footer class="site-footer">
   <p>
