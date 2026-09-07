@@ -20,6 +20,7 @@
 
   const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
   const currencyPrecise = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+  const currencyCompact = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 1 });
 
   const CHART_COLORS = ["#0f7a5c", "#ff7a45", "#3b6fb6", "#c0392b", "#8e5fd6"];
 
@@ -286,18 +287,32 @@
       warningNote.hidden = true;
     }
 
-    drawChart(result);
+    lastResult = result;
     resultsPanel.hidden = false;
+    drawChart(result);
     resultsPanel.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  let lastResult = null;
+
   function drawChart(result) {
+    // Render at the canvas's actual on-screen size (times devicePixelRatio) instead of a
+    // fixed 800x320 backing store — otherwise the chart gets blurry and its text shrinks
+    // to unreadable once squeezed into a phone-width container.
+    const dpr = window.devicePixelRatio || 1;
+    const cssWidth = chartCanvas.clientWidth || chartCanvas.parentElement.clientWidth;
+    const cssHeight = cssWidth * (320 / 800);
+    chartCanvas.width = Math.round(cssWidth * dpr);
+    chartCanvas.height = Math.round(cssHeight * dpr);
+    chartCanvas.style.height = `${cssHeight}px`;
+
     const ctx = chartCanvas.getContext("2d");
-    const w = chartCanvas.width;
-    const h = chartCanvas.height;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const w = cssWidth;
+    const h = cssHeight;
     ctx.clearRect(0, 0, w, h);
 
-    const padding = { top: 20, right: 20, bottom: 36, left: 70 };
+    const padding = { top: 20, right: 12, bottom: 32, left: w < 420 ? 54 : 70 };
     const plotW = w - padding.left - padding.right;
     const plotH = h - padding.top - padding.bottom;
 
@@ -314,6 +329,7 @@
     ctx.lineTo(padding.left + plotW, padding.top + plotH);
     ctx.stroke();
 
+    const yFormatter = w < 420 ? currencyCompact : currency;
     ctx.fillStyle = "#5c6b6a";
     ctx.font = "12px -apple-system, sans-serif";
     ctx.textAlign = "right";
@@ -321,7 +337,7 @@
     for (let i = 0; i <= ySteps; i++) {
       const val = (maxBalance / ySteps) * i;
       const y = padding.top + plotH - (val / maxBalance) * plotH;
-      ctx.fillText(currency.format(val), padding.left - 8, y + 4);
+      ctx.fillText(yFormatter.format(val), padding.left - 8, y + 4);
       ctx.strokeStyle = "#eef2f1";
       ctx.beginPath();
       ctx.moveTo(padding.left, y);
@@ -330,7 +346,8 @@
     }
 
     ctx.textAlign = "center";
-    const xLabelCount = Math.min(6, months);
+    const maxLabels = w < 420 ? 4 : 6;
+    const xLabelCount = Math.min(maxLabels, months);
     for (let i = 0; i <= xLabelCount; i++) {
       const monthIdx = Math.round((months / xLabelCount) * i);
       const x = padding.left + (monthIdx / months) * plotW;
@@ -365,6 +382,13 @@
     div.textContent = str;
     return div.innerHTML;
   }
+
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    if (!lastResult) return;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => drawChart(lastResult), 150);
+  });
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
