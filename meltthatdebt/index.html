@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Melt That Debt — Free Debt Snowball Calculator</title>
+<meta name="description" content="A free, private debt snowball calculator. Add up to 5 debts and get a month-by-month payoff plan. Nothing you type is ever stored or sent anywhere." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="disclaimer-banner" role="note" aria-label="Privacy and advice disclaimer">
+  <p>
+    <strong>🔒 Nothing is stored, saved, or uploaded.</strong>
+    All calculations happen right here in your browser and vanish when you close this tab.
+    <strong>This is not financial advice</strong> — it's an educational tool. For guidance on your specific situation, talk to a certified financial planner or a nonprofit credit counselor.
+  </p>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1><span class="flame">🔥</span> Melt That Debt</h1>
+    <p class="tagline">Free debt snowball calculator. Add your debts, get a payoff plan, watch the balances disappear.</p>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="panel form-panel" aria-labelledby="form-heading">
+    <h2 id="form-heading">Your Debts</h2>
+    <p class="hint">Add up to 5 debts — credit cards, loans, medical bills, anything with a balance and a minimum payment.</p>
+
+    <form id="debt-form" novalidate>
+      <div id="debt-rows"></div>
+
+      <button type="button" id="add-debt-btn" class="btn btn-secondary">+ Add another debt</button>
+
+      <div class="field extra-payment-field">
+        <label for="extra-payment">
+          Extra monthly payment
+          <span class="field-help">Any amount above your minimums that you can put toward debt each month. Enter 0 if none right now.</span>
+        </label>
+        <div class="input-prefix">
+          <span>$</span>
+          <input type="number" id="extra-payment" name="extra-payment" min="0" step="1" value="0" inputmode="decimal" />
+        </div>
+      </div>
+
+      <button type="submit" id="calculate-btn" class="btn btn-primary">Calculate my snowball plan</button>
+      <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="panel results-panel" id="results-panel" aria-labelledby="results-heading" hidden>
+    <h2 id="results-heading">Your Payoff Plan</h2>
+
+    <div class="stat-cards" id="stat-cards"></div>
+
+    <div class="results-block">
+      <h3>Attack order (smallest balance first)</h3>
+      <p class="hint">The debt snowball method: pay minimums on everything, then throw every spare dollar at your smallest balance. Once it's gone, roll its whole payment into the next one — your "snowball" grows as you go.</p>
+      <ol id="payoff-order" class="payoff-order"></ol>
+    </div>
+
+    <div class="results-block">
+      <h3>Total balance over time</h3>
+      <canvas id="balance-chart" width="800" height="320" role="img" aria-label="Line chart of total remaining debt balance declining over time"></canvas>
+      <div id="chart-legend" class="chart-legend"></div>
+    </div>
+
+    <div class="results-block">
+      <h3>Full payoff schedule</h3>
+      <p class="hint">One row per debt, showing exactly when it's crossed off the list.</p>
+      <div class="table-wrap">
+        <table id="schedule-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Debt</th>
+              <th>Starting balance</th>
+              <th>Interest rate</th>
+              <th>Debt-free in</th>
+              <th>Debt-free date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <p id="warning-note" class="warning-note" hidden></p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    <strong>Not financial advice.</strong> Melt That Debt is a free educational calculator. It uses a simplified model (fixed monthly payments, interest compounding monthly, no fees, late payments, or rate changes) and won't match your statements exactly. It does not collect, transmit, or store any information you enter — everything runs locally in your browser and is gone when you leave the page. For advice specific to your finances, consult a certified financial planner, a nonprofit credit counselor (e.g. NFCC.org), or your lender.
+  </p>
+  <p class="footer-meta">meltthatdebt.com &middot; No signup. No tracking. No data leaves your browser.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
